@@ -1,0 +1,147 @@
+a{
+	text-decoration: none;
+	color: black;
+}
+header{
+	position: relative;
+    align-items: center;
+    height: 5rem;
+    padding:1rem;
+    border-bottom:solid 1px;
+    display: flex;
+    justify-content: space-between;
+}
+header > div{
+    height:15%;
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header > div > img{
+    height:4rem;
+}
+nav{
+    width:50%;
+    display: flex;
+    justify-content: space-around;
+}
+nav a{
+    background-color: gold;
+    color: black;
+    padding:1rem 2rem;
+    border: 1px;
+    border-radius: 0.3rem;
+    box-shadow:inset;
+}
+#controll{
+	border-bottom: sorid 1px;
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+}
+#controll div{
+	display: flex;
+	align-items: center;
+}
+
+.s-button{
+	margin:0.3rem;
+	padding:0.01rem 0.1rem;
+	border: 1px black;
+	border-radius: 0.25rem;
+	box-shadow: 0.5px 0.5px 1px;
+}
+.input-button{
+	margin:0.3rem;
+	padding:0.01rem 0.1rem;
+	border: 1px black;
+	border-radius: 0.25rem;
+	box-shadow: 0.5px 0.5px 1px;
+}
+.yellow{
+	background-color: rgb(244, 239, 138);
+}
+.red{
+	background-color: rgb(231, 124, 124);
+}
+.green{
+	background-color: rgb(135, 248, 214);
+}
+#main-list{
+	padding:0.3rem;
+	display: flex;
+	justify-content: center;
+}
+.main-table{
+	width:85%;
+	position: relative;
+}
+.main-table th{
+	border-bottom: solid 1px;
+}
+.main-table th,
+.main-table td{
+	margin:auto;
+	box-shadow: 1px 1px 2px gray;
+}
+.fix{
+	position: sticky;
+	top: 0px;
+	background-color: rgb(226, 255, 191);
+}
+
+#wrapper{
+	margin: 0px auto 0px auto;
+	width: 320px; height: auto;
+}
+
+#msg{
+	margin: 0px; padding: 10px;
+	background-color: lightgray;
+	align-items: center;
+}
+
+#canvas{
+	width: 100%;
+	 height: auto;
+	background-color: silver;
+}
+#resp-on{
+	display: none;
+	position:fixed;
+	bottom:0px;
+	right:0px;
+	z-index:30;
+}
+#ham{
+	display: none;
+	position: fixed;
+	height:100vh;
+	width:100%;
+	top: 0px;
+	left: 0px;
+	flex-direction:column;
+	align-items: center;
+	justify-content: space-around;
+	z-index: 20;
+	background-color: white;
+}
+#ham a{
+	font-size: large;
+}
+
+@media screen and (max-width:700px) {
+	body{
+		font-size: 10px;
+	}
+	.resp-none{
+		display: none;
+	}
+	.main-table{
+		width: 100%;
+	}
+	#resp-on{
+		display: flex;
+	}
+}

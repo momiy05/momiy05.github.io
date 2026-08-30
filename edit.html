@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/sample.css">
+</head>
+
+<body>
+	<header>
+		<div>
+			<img src="/img/logo.png">
+			
+			<nav class="resp-none">
+				<a href="/">物品管理</a>
+			</nav>
+			<img src="/img/ham.png" id="resp-on" onclick="hamSwitch();">
+			<div id="ham">
+				<a href="/">ホーム</a>
+				<a th:href="@{'/update/30/insert'}">新規</a>
+				<a th:href="@{'/QRcode'}">QRコード</a>
+				<a href="/CSVLoader">CSV</a>
+			</div>
+		</div>
+	</header>
+	<main>
+		<form th:object="${itemList}" th:action="@{'/update/' + ${id} + '/insert'}" method="post" enctype="multipart/form-data">
+			<table>
+				<tr>
+					<td><label for="name">名称</label></td>
+					<td><input id="name" type="text" name="name" th:value="${item.name}" onchange="upBtn.updateButton(this)"></td>
+				</tr>
+				<tr>
+					<td><label for="serial">管理番号</label></td>
+					<td><input id="serial" type="text" name="serial" th:value="${item.serial}" onchange="upBtn.updateButton(this)"></td>
+				</tr>
+				<tr>
+					<td><label for="makerSerial">シリアルNo.</label></td>
+					<td><input id="makerSerial" type="text" name="makerSerial" th:value="${item.makerSerial}" onchange="upBtn.updateButton(this)"></td>
+				</tr>
+				<tr>
+					<td><label for="departmentId">管理部署</label></td>
+					<td>
+						<select id="departmentId" name="departmentId" onchange="upBtn.updateButton(this)">
+							<option></option>
+							<option th:each="dep : ${departmentList}" th:value="${dep.departmentId}"
+								th:text="${dep.departmentName}" th:selected="${dep.departmentId==item.departmentId}">
+							</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="placeId">設置場所</label></td>
+					<td>
+						<select id="placeId" name="placeId" onchange="upBtn.updateButton(this)">
+							<option></option>
+							<option th:each="place : ${placeList}" th:value="${place.placeId}"
+								th:text="${place.placeName}" th:selected="${place.placeId==item.placeId}"></option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="cycle">校正周期</label></td>
+					<td>
+						<select id="cycle" name="cycle" onchange="upBtn.updateButton(this)" onload="updateButton(this)">
+							<option></option>
+							<option th:value="1" th:text="1年" th:selected="${1==item.cycle}"></option>
+							<option th:value="2" th:text="2年" th:selected="${2==item.cycle}"></option>
+							<option th:value="3" th:text="3年" th:selected="${3==item.cycle}"></option>
+							<option th:value="4" th:text="4年" th:selected="${4==item.cycle}"></option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="updated">最終更新日</label></td>
+					<td><input id="updated" type="date" name="updated" th:value="${item.updated}" onchange="upBtn.updateButton(this)" onload="updateButton(this)"></td>
+				</tr>
+				<input type="hidden" name="viewFlg" th:value="1"> 
+				<tr>
+					<td><label>添付ファイル</label></td>
+					<td>
+						<input id="file" type="file" name="file">
+						<input type="hidden" name="filePath" th:value="${item.filePath}"> 
+						<input type="submit" name="download" th:value="${item.filePath +' ダウンロード'}" th:if="${!#strings.isEmpty(item.filePath)}">
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<input type="submit" name="update" value="送信" id="send" th:disabled="${action}=='insert'">
+					</td>
+				</tr>
+				</tr>
+			</table>
+		</form>
+	</main>
+	<footer></footer>
+
+	<script src="/js/itemListJs.js"></script>
+</body>
+
+</html>
